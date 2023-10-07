@@ -15,7 +15,7 @@ public class Libro {
     private String titulo;
     @Column(name = "fechaPublicacion")
     private LocalDate fechaPublicacion;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     private Author author;
 
