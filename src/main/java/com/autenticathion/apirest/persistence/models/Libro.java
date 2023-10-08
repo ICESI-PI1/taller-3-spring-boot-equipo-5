@@ -4,9 +4,9 @@ package com.autenticathion.apirest.persistence.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-
+@Entity
+@Table(name = "libros")
 public class Libro {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +15,7 @@ public class Libro {
     private String titulo;
     @Column(name = "fechaPublicacion")
     private LocalDate fechaPublicacion;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     private Author author;
 
