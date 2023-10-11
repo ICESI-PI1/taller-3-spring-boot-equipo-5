@@ -37,7 +37,7 @@ public class AuthorServiceImpl implements IAuthorService {
         if (existingAuthorOptional.isPresent()) {
             Author existingAuthor = existingAuthorOptional.get();
             //No se puede actualizar el id por que es primary key
-            // Actualiza los campos del autor existente con los valores del nuevo autor
+            // Actualiza los campos del autor
             existingAuthor.setNombre(author.getNombre());
             existingAuthor.setNacionalidad(author.getNacionalidad());
 
