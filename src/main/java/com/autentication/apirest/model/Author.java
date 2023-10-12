@@ -1,7 +1,6 @@
-package com.autenticathion.apirest.persistence.models;
+package com.autentication.apirest.model;
 
-
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.List;
 

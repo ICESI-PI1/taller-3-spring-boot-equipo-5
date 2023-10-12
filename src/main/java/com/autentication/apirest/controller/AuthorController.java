@@ -1,8 +1,7 @@
-package com.autenticathion.apirest.controller;
-
-import com.autenticathion.apirest.persistence.models.Author;
-import com.autenticathion.apirest.persistence.models.Libro;
-import com.autenticathion.apirest.services.IAuthorService;
+package com.autentication.apirest.controller;
+import com.autentication.apirest.model.Author;
+import com.autentication.apirest.model.Libro;
+import com.autentication.apirest.services.impl.IAuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

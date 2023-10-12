@@ -1,10 +1,11 @@
-package com.autenticathion.apirest.services.impl;
+package com.autentication.apirest.services.impl;
 
-import com.autenticathion.apirest.persistence.models.Author;
-import com.autenticathion.apirest.persistence.models.Libro;
-import com.autenticathion.apirest.persistence.repository.IAuthorRepository;
-import com.autenticathion.apirest.services.IAuthorService;
-import jakarta.persistence.EntityNotFoundException;
+
+import com.autentication.apirest.model.Author;
+import com.autentication.apirest.model.Libro;
+import com.autentication.apirest.repository.IAuthorRepository;
+import com.autentication.apirest.services.impl.IAuthorService;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

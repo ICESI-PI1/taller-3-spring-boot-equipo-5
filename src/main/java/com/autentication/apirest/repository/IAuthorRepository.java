@@ -1,7 +1,7 @@
-package com.autenticathion.apirest.persistence.repository;
+package com.autentication.apirest.repository;
 
-import com.autenticathion.apirest.persistence.models.Author;
-import com.autenticathion.apirest.persistence.models.Libro;
+import com.autentication.apirest.model.Author;
+import com.autentication.apirest.model.Libro;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

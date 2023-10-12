@@ -1,30 +1,24 @@
-package com.autenticathion.apirest.jwt;
-
-
+package com.autentication.apirest.services.impl;
 import org.springframework.security.core.userdetails.User;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import java.util.ArrayList;
-
 @Service
-public class UserDetailService implements UserDetailsService {
-
+public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if ("admin".equals(username)) {
-            return new User("admin", "123",
+        if ("javainuse".equals(username)) {
+            return new User("javainuse", "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
                     new ArrayList<>());
         } else {
-            throw new UsernameNotFoundException("User not found with username: " + "admin");
+            throw new UsernameNotFoundException("User not found with username: " + username);
         }
     }
-
-
-
-
 }

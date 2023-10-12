@@ -1,7 +1,8 @@
-package com.autenticathion.apirest.services;
+package com.autentication.apirest.services.impl;
 
-import com.autenticathion.apirest.persistence.models.Author;
-import com.autenticathion.apirest.persistence.models.Libro;
+
+import com.autentication.apirest.model.Author;
+import com.autentication.apirest.model.Libro;
 
 import java.util.List;
 import java.util.Optional;
