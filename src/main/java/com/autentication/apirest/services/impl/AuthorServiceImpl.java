@@ -4,6 +4,8 @@ import com.autentication.apirest.model.Author;
 import com.autentication.apirest.model.Libro;
 import com.autentication.apirest.repository.IAuthorRepository;
 import com.autentication.apirest.services.IAuthorService;
+import com.autentication.apirest.services.ILibroService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +15,13 @@ import java.util.Optional;
 public class AuthorServiceImpl implements IAuthorService {
 
     IAuthorRepository authorRepository;
+    private ILibroService libroService;
+
+    @Autowired
+    public AuthorServiceImpl(IAuthorRepository authorRepository, ILibroService libroService) {
+        this.authorRepository = authorRepository;
+        this.libroService = libroService;
+    }
 
     @Override
     public Author createAuthor(Author Author) {
@@ -41,6 +50,6 @@ public class AuthorServiceImpl implements IAuthorService {
 
     @Override
     public List<Libro> listLibrosFromAutor(Long id) {
-        return authorRepository.listLibrosFromAutor(id);
+        return authorRepository.listLibrosFromAutor(id, libroService);
     }
 }

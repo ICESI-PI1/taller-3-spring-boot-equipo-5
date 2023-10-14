@@ -2,6 +2,7 @@ package com.autentication.apirest.controller;
 import com.autentication.apirest.model.Author;
 import com.autentication.apirest.model.Libro;
 import com.autentication.apirest.services.IAuthorService;
+import com.autentication.apirest.services.ILibroService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +13,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/autores")
 public class AuthorController {
-
+    private Long currentId = 1L; // Comienza desde 1 y aumenta con cada creación
     private IAuthorService authorService;
-    public AuthorController(IAuthorService authorService){
+
+    public AuthorController(IAuthorService authorService, ILibroService libroService){
         this.authorService = authorService;
     }
 
@@ -43,6 +45,9 @@ public class AuthorController {
     // POST /autores: Crear un nuevo autor.
     @PostMapping
     public ResponseEntity<Author> createAuthor(@RequestBody Author autor) {
+        autor.setId(currentId);
+        currentId++;
+
         Author newAuthor = this.authorService.createAuthor(autor);
 
         if (newAuthor != null){
@@ -54,10 +59,21 @@ public class AuthorController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author autor) {
-        Author updatedAuthor = authorService.editAuthor(id, autor);
+        Author previous = authorService.searchAuthor(id).orElse(null);
 
-        if (updatedAuthor != null){
-            return new ResponseEntity<>(updatedAuthor, HttpStatus.OK);
+        if (previous != null) {
+            if (previous.getId().equals(autor.getId())){
+                Author updatedAuthor = authorService.editAuthor(id, autor);
+
+                if (updatedAuthor != null){
+                    return new ResponseEntity<>(updatedAuthor, HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+                }
+
+            } else {
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
