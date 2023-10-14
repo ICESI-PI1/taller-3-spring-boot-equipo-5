@@ -4,6 +4,7 @@ import com.autentication.apirest.model.Author;
 import com.autentication.apirest.model.Libro;
 import com.autentication.apirest.repository.IAuthorRepository;
 import com.autentication.apirest.repository.ILibroRepository;
+import com.autentication.apirest.services.ILibroService;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -13,7 +14,6 @@ import java.util.Optional;
 @Repository
 public class AuthorRepository implements IAuthorRepository {
     private List<Author> authores;
-    private ILibroRepository iLibroRepository;
 
     public AuthorRepository(){
         authores = new ArrayList<>();
@@ -99,13 +99,13 @@ public class AuthorRepository implements IAuthorRepository {
     }
 
     @Override
-    public List<Libro> listLibrosFromAutor(Long id) {
+    public List<Libro> listLibrosFromAutor(Long id, ILibroService libroService) {
         List<Libro> librosFromAutor = new ArrayList<>();
 
         if (searchAuthor(id).isPresent()) {
             for (Libro l :
-                    iLibroRepository.listLibros()) {
-                if (l.getAutor().equals(searchAuthor(id).get())) {
+                    libroService.listLibros()) {
+                if (l.getAutor().getId().equals(id)) {
                     librosFromAutor.add(l);
                 }
             }

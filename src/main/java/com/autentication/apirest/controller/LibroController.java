@@ -71,10 +71,22 @@ public class LibroController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Libro> updateLibro(@PathVariable Long id, @RequestBody Libro libro) {
-        Libro updateLibro = libroService.editLibro(id, libro);
+        Libro previous = libroService.searchLibro(id).orElse(null);
 
-        if (updateLibro != null){
-            return new ResponseEntity<>(updateLibro, HttpStatus.OK);
+        if (previous != null) {
+            if (previous.getId().equals(libro.getId()) &&
+                    previous.getAutor().getId().equals(libro.getAutor().getId())){
+                Libro updateLibro = libroService.editLibro(id, libro);
+
+                if (updateLibro != null){
+                    return new ResponseEntity<>(updateLibro, HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+                }
+
+            } else {
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
