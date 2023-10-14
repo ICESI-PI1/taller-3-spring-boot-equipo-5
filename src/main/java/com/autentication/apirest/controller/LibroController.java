@@ -48,12 +48,11 @@ public class LibroController {
     // POST /libros
     @PostMapping
     public ResponseEntity<Libro> createLibro(@RequestBody Libro libro) {
-        Long authorId = libro.getAutor().getId();
+        Long authorId = libro.getAutorId();
 
         Author author = authorService.searchAuthor(authorId).orElse(null);
 
-        if (author != null && author.getNombre().equals(libro.getAutor().getNombre()) &&
-        author.getNacionalidad().equals(libro.getAutor().getNacionalidad())){
+        if (author != null){
             libro.setId(currentId);
             currentId++;
 
@@ -75,7 +74,7 @@ public class LibroController {
 
         if (previous != null) {
             if (previous.getId().equals(libro.getId()) &&
-                    previous.getAutor().getId().equals(libro.getAutor().getId())){
+                    previous.getAutorId().equals(libro.getAutorId())){
                 Libro updateLibro = libroService.editLibro(id, libro);
 
                 if (updateLibro != null){

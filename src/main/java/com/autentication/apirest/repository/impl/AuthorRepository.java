@@ -105,7 +105,7 @@ public class AuthorRepository implements IAuthorRepository {
         if (searchAuthor(id).isPresent()) {
             for (Libro l :
                     libroService.listLibros()) {
-                if (l.getAutor().getId().equals(id)) {
+                if (l.getAutorId().equals(id)) {
                     librosFromAutor.add(l);
                 }
             }
