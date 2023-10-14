@@ -13,5 +13,5 @@ public class Libro {
     private Long id;
     private String titulo;
     private Date fechaPublicacion;
-    private Author autor;
+    private Long autorId;
 }

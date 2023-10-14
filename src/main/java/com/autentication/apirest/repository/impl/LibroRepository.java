@@ -84,7 +84,7 @@ public class LibroRepository implements ILibroRepository {
                 return null;
             }
 
-            Libro newLibro = new Libro(libro.getId(), libro.getTitulo(), libro.getFechaPublicacion(), libro.getAutor());
+            Libro newLibro = new Libro(libro.getId(), libro.getTitulo(), libro.getFechaPublicacion(), libro.getAutorId());
             libros.add(newLibro);
         }
 
