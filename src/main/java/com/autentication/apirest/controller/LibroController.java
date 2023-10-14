@@ -1,6 +1,8 @@
 package com.autentication.apirest.controller;
 
+import com.autentication.apirest.model.Author;
 import com.autentication.apirest.model.Libro;
+import com.autentication.apirest.services.IAuthorService;
 import com.autentication.apirest.services.ILibroService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +14,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/libros")
 public class LibroController {
+    private Long currentId = 1L; // Comienza desde 1 y aumenta con cada creación
     private ILibroService libroService;
-    public LibroController(ILibroService libroService){
+    private IAuthorService authorService;
+    public LibroController(ILibroService libroService, IAuthorService authorService){
         this.libroService = libroService;
+        this.authorService = authorService;
     }
 
     //Devuelve todos los autores
@@ -43,12 +48,24 @@ public class LibroController {
     // POST /libros
     @PostMapping
     public ResponseEntity<Libro> createLibro(@RequestBody Libro libro) {
-        Libro newLibro = this.libroService.createLibro(libro);
+        Long authorId = libro.getAutor().getId();
 
-        if (newLibro != null){
-            return new ResponseEntity<>(newLibro, HttpStatus.OK);
+        Author author = authorService.searchAuthor(authorId).orElse(null);
+
+        if (author != null && author.getNombre().equals(libro.getAutor().getNombre()) &&
+        author.getNacionalidad().equals(libro.getAutor().getNacionalidad())){
+            libro.setId(currentId);
+            currentId++;
+
+            Libro newLibro = this.libroService.createLibro(libro);
+
+            if (newLibro != null){
+                return new ResponseEntity<>(newLibro, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            }
         } else {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 

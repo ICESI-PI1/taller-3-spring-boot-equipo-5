@@ -12,6 +12,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/autores")
 public class AuthorController {
+    private Long currentId = 1L; // Comienza desde 1 y aumenta con cada creación
 
     private IAuthorService authorService;
     public AuthorController(IAuthorService authorService){
@@ -43,6 +44,9 @@ public class AuthorController {
     // POST /autores: Crear un nuevo autor.
     @PostMapping
     public ResponseEntity<Author> createAuthor(@RequestBody Author autor) {
+        autor.setId(currentId);
+        currentId++;
+
         Author newAuthor = this.authorService.createAuthor(autor);
 
         if (newAuthor != null){

@@ -15,6 +15,10 @@ public class AuthorRepository implements IAuthorRepository {
     private List<Author> authores;
     private ILibroRepository iLibroRepository;
 
+    public AuthorRepository(){
+        authores = new ArrayList<>();
+    }
+
     @Override
     public Author createAuthor(Author Author) {
         Author existingAuthor = searchAuthor(Author.getId()).orElse(null);
