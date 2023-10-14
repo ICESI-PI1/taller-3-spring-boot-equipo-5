@@ -13,6 +13,6 @@ public interface IAuthorService {
     public boolean deleteAuthor(Long id);
     public Optional<Author> searchAuthor(Long id);
     public List<Author> listAuthores();
-    public Author editAuthor(Author Author);
+    public Author editAuthor(Long id, Author Author);
     public List<Libro> listLibrosFromAutor(Long id);
 }

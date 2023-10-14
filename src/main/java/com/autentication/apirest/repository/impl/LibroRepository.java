@@ -73,8 +73,8 @@ public class LibroRepository implements ILibroRepository {
     }
 
     @Override
-    public Libro editLibro(Libro libro) {
-        Libro existingLibro = searchLibro(libro.getId()).orElse(null);
+    public Libro editLibro(Long id, Libro libro) {
+        Libro existingLibro = searchLibro(id).orElse(null);
         if (existingLibro == null) {
             return null;
         } else {

@@ -1,7 +1,5 @@
 package com.autentication.apirest.controller;
 
-
-import com.autentication.apirest.model.Author;
 import com.autentication.apirest.model.Libro;
 import com.autentication.apirest.services.ILibroService;
 import org.springframework.http.HttpStatus;
@@ -54,11 +52,16 @@ public class LibroController {
         }
     }
 
-    //@PutMapping("/{id}")
-    //public ResponseEntity<Libro> updateLibro(@PathVariable Long id, @RequestBody Libro libro) {
-    //    Libro updateLibro = libroService.update(id, libro);
-    //    return new ResponseEntity<>(updateLibro, HttpStatus.OK);
-    //}
+    @PutMapping("/{id}")
+    public ResponseEntity<Libro> updateLibro(@PathVariable Long id, @RequestBody Libro libro) {
+        Libro updateLibro = libroService.editLibro(id, libro);
+
+        if (updateLibro != null){
+            return new ResponseEntity<>(updateLibro, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
 
     // DELETE /autores/{id}: Eliminar un autor.
     @DeleteMapping("/{id}")

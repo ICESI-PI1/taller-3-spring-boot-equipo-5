@@ -71,8 +71,8 @@ public class AuthorRepository implements IAuthorRepository {
     }
 
     @Override
-    public Author editAuthor(Author Author) {
-        Author existingAuthor = searchAuthor(Author.getId()).orElse(null);
+    public Author editAuthor(Long id, Author Author) {
+        Author existingAuthor = searchAuthor(id).orElse(null);
         if (existingAuthor == null) {
             return null;
         } else {

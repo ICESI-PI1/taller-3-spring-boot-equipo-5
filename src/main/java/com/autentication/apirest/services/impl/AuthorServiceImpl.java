@@ -35,8 +35,8 @@ public class AuthorServiceImpl implements IAuthorService {
     }
 
     @Override
-    public Author editAuthor(Author Author) {
-        return authorRepository.editAuthor(Author);
+    public Author editAuthor(Long id, Author Author) {
+        return authorRepository.editAuthor(id, Author);
     }
 
     @Override

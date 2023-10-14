@@ -34,7 +34,7 @@ public class LibroServiceImpl implements ILibroService {
     }
 
     @Override
-    public Libro editLibro(Libro libro) {
-        return iRepository.editLibro(libro);
+    public Libro editLibro(Long id, Libro libro) {
+        return iRepository.editLibro(id, libro);
     }
 }

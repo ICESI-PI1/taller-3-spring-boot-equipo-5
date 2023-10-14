@@ -52,11 +52,16 @@ public class AuthorController {
         }
     }
 
-    //@PutMapping("/{id}")
-    //public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author autor) {
-    //    Author updatedAuthor = authorService.update(id, autor);
-    //    return new ResponseEntity<>(updatedAuthor, HttpStatus.OK);
-    //}
+    @PutMapping("/{id}")
+    public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author autor) {
+        Author updatedAuthor = authorService.editAuthor(id, autor);
+
+        if (updatedAuthor != null){
+            return new ResponseEntity<>(updatedAuthor, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
 
     // DELETE /autores/{id}: Eliminar un autor.
     @DeleteMapping("/{id}")

@@ -10,5 +10,5 @@ public interface ILibroService {
     public boolean deleteLibro(Long id);
     public Optional<Libro> searchLibro(Long id);
     public List<Libro> listLibros();
-    public Libro editLibro(Libro libro);
+    public Libro editLibro(Long id, Libro libro);
 }

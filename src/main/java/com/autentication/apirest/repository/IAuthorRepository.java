@@ -11,6 +11,6 @@ public interface IAuthorRepository {
     public boolean deleteAuthor(Long id);
     public Optional<Author> searchAuthor(Long id);
     public List<Author> listAuthores();
-    public Author editAuthor(Author autor);
+    public Author editAuthor(Long id, Author autor);
     public List<Libro> listLibrosFromAutor(Long id);
 }
