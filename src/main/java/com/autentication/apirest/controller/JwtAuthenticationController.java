@@ -1,7 +1,5 @@
 package com.autentication.apirest.controller;
 
-import java.util.Objects;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.autentication.apirest.services.impl.JwtUserDetailsService;
+import com.autentication.apirest.services.JwtUserDetailsService;
 
 
 import com.autentication.apirest.config.JwtTokenUtil;

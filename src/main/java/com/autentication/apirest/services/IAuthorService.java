@@ -1,4 +1,4 @@
-package com.autentication.apirest.services.impl;
+package com.autentication.apirest.services;
 
 
 import com.autentication.apirest.model.Author;

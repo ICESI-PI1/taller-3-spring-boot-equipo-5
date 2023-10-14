@@ -14,8 +14,10 @@ import java.util.Optional;
 @RequestMapping("/autores")
 public class AuthorController {
 
-    @Autowired
-    IAuthorService authorService;
+    private IAuthorService authorService;
+    public AuthorController(IAuthorService authorService){
+        this.authorService = authorService;
+    }
 
     //Devuelve todos los autores
     //El metodo retorna ResponseEntity porque nos da mayor control sobre los Status http que nos da el request
