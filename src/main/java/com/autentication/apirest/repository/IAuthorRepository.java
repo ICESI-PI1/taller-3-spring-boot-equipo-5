@@ -2,11 +2,15 @@ package com.autentication.apirest.repository;
 
 import com.autentication.apirest.model.Author;
 import com.autentication.apirest.model.Libro;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface IAuthorRepository extends JpaRepository<Author, Long>{
-
+public interface IAuthorRepository {
+    public Author createAuthor(Author autor);
+    public boolean deleteAuthor(Long id);
+    public Optional<Author> searchAuthor(Long id);
+    public List<Author> listAuthores();
+    public Author editAuthor(Author autor);
+    public List<Libro> listLibrosFromAutor(Long id);
 }

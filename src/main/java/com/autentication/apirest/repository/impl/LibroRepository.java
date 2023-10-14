@@ -2,13 +2,16 @@ package com.autentication.apirest.repository.impl;
 
 import com.autentication.apirest.model.Libro;
 import com.autentication.apirest.repository.ILibroRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class LibroRepository implements ILibroRepository {
     private List<Libro> libros;
+
     // aqui no es necesario colocar @AllArgsConstructor, ya que no necesita
     // inyección de dependencias a causa de que NO depende de nadie, porque
     // esa instancia de libros la crea aca mismo, no es que se lo pasen

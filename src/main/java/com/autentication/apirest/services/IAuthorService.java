@@ -9,15 +9,10 @@ import java.util.Optional;
 
 public interface IAuthorService {
 
-    Iterable<Author> findAll();
-
-    Optional<Author> findById(Long id);
-
-    Author save(Author autor);
-
-    Author update(Long id, Author autor);
-
-    void delete(Long id);
-
-    List<Libro> findLibrosByAutor(Long id);
+    public Author createAuthor(Author Author);
+    public boolean deleteAuthor(Long id);
+    public Optional<Author> searchAuthor(Long id);
+    public List<Author> listAuthores();
+    public Author editAuthor(Author Author);
+    public List<Libro> listLibrosFromAutor(Long id);
 }

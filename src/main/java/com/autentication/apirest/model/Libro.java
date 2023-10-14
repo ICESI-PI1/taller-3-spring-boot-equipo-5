@@ -1,7 +1,5 @@
 package com.autentication.apirest.model;
 
-import javax.persistence.*;
-
 
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;

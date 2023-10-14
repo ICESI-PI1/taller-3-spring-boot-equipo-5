@@ -1,8 +1,7 @@
 package com.autentication.apirest.controller;
 import com.autentication.apirest.model.Author;
 import com.autentication.apirest.model.Libro;
-import com.autentication.apirest.services.impl.IAuthorService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.autentication.apirest.services.IAuthorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,43 +23,54 @@ public class AuthorController {
     //Sirve para hacer las pruebas en PostmMan
     @GetMapping
     public ResponseEntity<Iterable<Author>> getAllAuthors() {
-        Iterable<Author> authors = authorService.findAll();
+        Iterable<Author> authors = authorService.listAuthores();
         return new ResponseEntity<>(authors, HttpStatus.OK);
     }
 
     // GET /autores/{id}: Obtener detalles de un autor específico.
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Author>> getAuthorById(@PathVariable Long id) {
-        Optional<Author> author = authorService.findById(id);
-        return new ResponseEntity<>(author, HttpStatus.OK);
+    public ResponseEntity<Author> getAuthorById(@PathVariable Long id) {
+        Optional<Author> author = this.authorService.searchAuthor(id);
+
+        if (author.isPresent()){
+            return new ResponseEntity<>(author.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 
 
     // POST /autores: Crear un nuevo autor.
     @PostMapping
     public ResponseEntity<Author> createAuthor(@RequestBody Author autor) {
-        Author newAuthor = authorService.save(autor);
-        return new ResponseEntity<>(newAuthor, HttpStatus.CREATED);
+        Author newAuthor = this.authorService.createAuthor(autor);
+
+        if (newAuthor != null){
+            return new ResponseEntity<>(newAuthor, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author autor) {
-        Author updatedAuthor = authorService.update(id, autor);
-        return new ResponseEntity<>(updatedAuthor, HttpStatus.OK);
-    }
+    //@PutMapping("/{id}")
+    //public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author autor) {
+    //    Author updatedAuthor = authorService.update(id, autor);
+    //    return new ResponseEntity<>(updatedAuthor, HttpStatus.OK);
+    //}
 
     // DELETE /autores/{id}: Eliminar un autor.
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAuthor(@PathVariable Long id) {
-        authorService.delete(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        boolean result = authorService.deleteAuthor(id);
+
+        return result ? (new ResponseEntity<>(HttpStatus.NO_CONTENT)) :
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     // GET /autores/{id}/libros: Listar los libros de un autor específico.
     @GetMapping("/{id}/libros")
     public ResponseEntity<List<Libro>> getLibrosByAuthor(@PathVariable Long id) {
-        List<Libro> libros = authorService.findLibrosByAutor(id);
+        List<Libro> libros = this.authorService.listLibrosFromAutor(id);
         return new ResponseEntity<>(libros, HttpStatus.OK);
     }
-
 }
