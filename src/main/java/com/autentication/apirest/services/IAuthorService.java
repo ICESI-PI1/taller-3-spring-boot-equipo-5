@@ -1,4 +1,5 @@
-package com.autentication.apirest.repository;
+package com.autentication.apirest.services;
+
 
 import com.autentication.apirest.model.Author;
 import com.autentication.apirest.model.Libro;
@@ -6,11 +7,12 @@ import com.autentication.apirest.model.Libro;
 import java.util.List;
 import java.util.Optional;
 
-public interface IAuthorRepository {
-    public Author createAuthor(Author autor);
+public interface IAuthorService {
+
+    public Author createAuthor(Author Author);
     public boolean deleteAuthor(Long id);
     public Optional<Author> searchAuthor(Long id);
     public List<Author> listAuthores();
-    public Author editAuthor(Long id, Author autor);
+    public Author editAuthor(Long id, Author Author);
     public List<Libro> listLibrosFromAutor(Long id);
 }

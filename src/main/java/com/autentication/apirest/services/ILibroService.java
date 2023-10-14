@@ -1,11 +1,11 @@
-package com.autentication.apirest.repository;
+package com.autentication.apirest.services;
 
 import com.autentication.apirest.model.Libro;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface ILibroRepository {
+public interface ILibroService {
     public Libro createLibro(Libro libro);
     public boolean deleteLibro(Long id);
     public Optional<Libro> searchLibro(Long id);
