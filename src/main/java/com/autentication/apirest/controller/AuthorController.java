@@ -92,6 +92,11 @@ public class AuthorController {
     @GetMapping("/{id}/libros")
     public ResponseEntity<List<Libro>> getLibrosByAuthor(@PathVariable Long id) {
         List<Libro> libros = this.authorService.listLibrosFromAutor(id);
-        return new ResponseEntity<>(libros, HttpStatus.OK);
+
+        if (libros != null){
+            return new ResponseEntity<>(libros, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
