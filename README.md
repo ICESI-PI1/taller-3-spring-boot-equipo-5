@@ -3,7 +3,7 @@
 # **Taller 3 Spring Boot API Rest**
 Los integrantes de este maravilloso equipo son: Dylan Bermudez Cardona, Sara Cardona Vásquez y Juan José López López.
 
-Es importante recalcar que la aplicación final se encuentra en la rama **main**, allí está todo el taller desarrollado de acuerdo al enunciado.
+Es importante recalcar que la aplicación final se encuentra en la rama **main**, allí está todo el taller desarrollado de acuerdo al enunciado. Además, el endpoint para la autenticación con usuario y contraseña es ***/authenticate***
 
 Link del video del funcionamiento de la aplicación:
 
