@@ -3,6 +3,8 @@
 # **Taller 3 Spring Boot API Rest**
 Los integrantes de este maravilloso equipo son: Dylan Bermudez Cardona, Sara Cardona Vásquez y Juan José López López.
 
+Es importante recalcar que la aplicación final se encuentra en la rama **main**, allí está todo el taller desarrollado de acuerdo al enunciado.
+
 Link del video del funcionamiento de la aplicación:
 
 [Video](https://youtu.be/dibxmiU-eqk)
